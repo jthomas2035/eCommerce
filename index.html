@@ -1,0 +1,78 @@
+<html>
+    <head>
+        <title> My Title </title>
+        <style>
+        </style>
+        <script>
+           
+             var   pr1 = 15, Wsp1 = 5;
+             var   pr2 = 15, Wsp2 = 5;
+             var   pr3 = 15, Wsp3 = 5;
+             var taxRate = 8.75;
+           
+           
+            function prices(){
+                document.getElementById("spam1").innerHTML="Price: $"+pr1
+                document.getElementById("spam2").innerHTML="Price: $"+pr2
+                document.getElementById("spam3").innerHTML="Price: $"+pr3
+            }
+
+            function ProcessOrder(){
+                //code the claculations, shipping decisions, and output display
+                var qnt1 = ParseInt(document.getElementById("qnty1").value);
+                var qnt2 = ParseInt(document.getElementById("qnty2").value);
+                var qnt3 = ParseInt(document.getElementById("qnty3").value);
+                //calculating
+                var CuSubtot = (pr1*qnt1) + (pr2*qnt2) + (pr3*qnt3);
+                var ComSubtot  = (Wsp1*qnt1) + (Wsp2*qnt2) + (Wsp3*qnt3);
+                var profit = CuSubtot - ComSubtot;
+                var tax = CuSubtot * taxRate/100;
+            }
+            
+        </script>
+    </head>
+    <body onload="prices()">
+        <h1> JT's T-Shirts </h1>
+        <!-- Item 1 -->
+        <div>
+            <img src="project-item-1.jpg"><br>
+            <p> Item 1 description</p><br>
+            <span id="span1"></span>
+            <input type="text" id="qty1" placeholder="Enter #">
+        </div>
+        <hr>
+        <!-- Item 2 -->
+        <div>
+            <img src="project-item-2.jpg"><br>
+            <p> Item 2 description</p><br>
+            <span id="span2"></span>
+            <input type="text" id="qty2" placeholder="Enter #">
+        </div>
+        <hr>
+        <!-- Item 3 -->
+        <div>
+            <img src="project-item-3.jpeg"><br>
+            <p> Item 3 description</p><br>
+            <span id="span3"></span>
+            <input type="text" id="qty3" placeholder="Enter #">
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </body>
+</html>
