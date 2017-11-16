@@ -1,0 +1,105 @@
+<!doctype HTML>
+<html>
+    <head>
+    <title> My Title </title>
+    <style>
+    img {
+        width:500px;
+        height:500px; 
+    }
+    body{
+        background-image: url("backgroungfp.jpg");
+    }
+    </style>
+    <script>
+        var pr1 = 15, Wsp1 = 5;
+        var pr2 = 15, Wsp2 = 5;
+        var pr3 = 15, Wsp3 = 5;
+        var taxRate = 8.75;
+           
+        function prices(){
+            document.getElementById("span1").innerHTML="Price: $"+pr1;
+            document.getElementById("span2").innerHTML="Price: $"+pr2;
+            document.getElementById("span3").innerHTML="Price: $"+pr3;
+        }
+
+        function order(){
+                //code the claculations, shipping decisions, and output display
+            var qnt1 = parseInt(document.getElementById("qnty1").value);
+            var qnt2 = parseInt(document.getElementById("qnty2").value);
+            var qnt3 = parseInt(document.getElementById("qnty3").value);
+                //calculating
+            var CuSubtot = (pr1*qnt1) + (pr2*qnt2) + (pr3*qnt3);
+            var ComSubtot  = (Wsp1*qnt1) + (Wsp2*qnt2) + (Wsp3*qnt3);
+            var profit = CuSubtot - ComSubtot;
+            var tax = CuSubtot * taxRate/100;
+            var shipping = 0;
+            if (CuSubtot <100){
+                shipping = 25;
+            }else if (CuSubtot >=100 && CuSubtot<=200){
+                shipping = 10;
+            }else shipping = 0;
+                
+            var CuTotal = CuSubtot + tax +shipping;
+            var itemsSold = qnt1 + qnt2+ qnt3;
+
+            var op = document.getElementById("output");
+            var build = "";
+            build += "<div id='CuInfo'>";
+            build += "<pre>";
+            build += "   CUSTOMER ORDER DETAILS  <br>";
+            build += "Subtotal:            $"   + CuSubtot.toFixed(2) + "<br>";
+            build += "Tax     :            $"   + tax.toFixed(2) + "<br>";
+            build += "Shipping & Handling  $"   + shipping + "<br>";
+            build += "TOTAL                $"   + CuTotal.toFixed(2) + "<br><br>";
+            build += "</div>";
+
+            build += "<br><hr>";
+            build += "<div id='companyInfo'";
+            build += "<pre>";
+            build += " Company Order Details "+"<br>";
+            build += "-------------------------------- <br>";
+            build += "Total Items Sold:               "+itemsSold + "<br>";
+            build += "Customer Subtotal:             $" + CuSubtot.toFixed(2) + "<br>";
+            build += "Company Subtotal:              $" + ComSubtot.toFixed(2) + "<br>";
+            build += "Profit:                        $" + profit.toFixed(2) + "<br><br>";
+            build += "</div>";
+            op.innerHTML = build;
+
+        }
+            
+    </script>
+    </head>
+    <body onload="prices()">
+        <h1> JT's T-Shirts </h1>
+        <!-- Item 1 -->
+        <div>
+            <img src="project-item-1.jpg"><br>
+            <p> Item 1 description</p><br>
+            <span id="span1"></span>
+            <input type="text" id="qnty1" value = "0" placeholder="Enter #">
+        </div>
+        <hr>
+        <!-- Item 2 -->
+        <div>
+            <img src="project-item-2.jpg"><br>
+            <p> Item 2 description</p><br>
+            <span id="span2"></span>
+            <input type="text" id="qnty2" value = "0" placeholder="Enter #">
+        </div>
+        <hr>
+        <!-- Item 3 -->
+        <div>
+            <img src="project-item-3.jpeg"><br>
+            <p> Item 3 description</p><br>
+            <span id="span3"></span>
+            <input type="text" id="qnty3" value = "0"placeholder="Enter #">
+       </div>
+   
+        <button onclick="order()"> Process My Order </button>
+        <br>
+        <div id="output"></div>
+   
+    </body>
+
+</html>
